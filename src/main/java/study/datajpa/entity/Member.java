@@ -8,6 +8,17 @@ import lombok.*;
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString(of = {"id", "username", "age"})
+// JPA NamedQuery의 특징
+// Entity에 정의해서 사용
+// 장점 : 컴파일 시 쿼리의 문제가 있는지 한번 검증과정을 거침
+// 단점 : Spring Data JPA에서 제공하는 기능에 비해서 기재할 내용이 많음
+//       (실무에서는 거의 사용할 일이 없을 것임.)
+// 주의 : em.createQuery로 작성된 쿼리는 컴파일 시 에러가 발생되지 않음..
+//       그러니 가능하다면 쓰지 않도록 할 것
+//@NamedQuery(
+//        name="Member.findByUsername",
+//        query="select m from Member m where m.username = :username"
+//)
 public class Member {
     @Id
     @GeneratedValue
