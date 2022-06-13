@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import study.datajpa.dto.MemberDto;
 import study.datajpa.entity.Member;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
@@ -27,4 +28,11 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     // jpql에서 지원하는 new operation
     @Query("select new study.datajpa.dto.MemberDto(m.id, m.username, t.name) from Member m join m.team t")
     List<MemberDto> findMemberDto();
+
+    // 파라미터 바인딩은 2가지가 존재
+    // ?0 -> 위치기반
+    // :names -> 이름기반
+    // 위치기반은 파라미터의 위치가 바뀌면 문제가 발생되기 때문에 사용하지 말 것
+    @Query("select m from Member m where m.username in :names")
+    List<Member> findByNames(@Param("names") Collection<String> names);
 }
