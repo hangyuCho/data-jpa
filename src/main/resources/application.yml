@@ -10,6 +10,8 @@ spring:
       ddl-auto: create
     properties:
       hibernate:
+        # Oracle 디비를 사용할 때 추가가 필요 디비에 맞춰서 쿼리를 자동으로 생성해줌.
+        # dialect: org.hibernate.dialect.Oracle10gDialect
         # show_sql: true
         format_sql: true
 
